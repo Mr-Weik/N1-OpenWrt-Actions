@@ -25,6 +25,11 @@ git clone --depth=1 https://github.com/gdy666/luci-app-lucky.git package/lucky
 #添加自定义的软件包源
 #git_sparse_clone main https://github.com/kiddin9/kwrt-packages ddns-go
 #git_sparse_clone main https://github.com/kiddin9/kwrt-packages luci-app-ddns-go
+
+# iStore
+git_sparse_clone main https://github.com/linkease/istore-ui app-store-ui
+git_sparse_clone main https://github.com/linkease/istore luci
+
 # Remove packages
 #删除lean库中的插件，使用自定义源中的包。
 rm -rf feeds/packages/net/v2ray-geodata
