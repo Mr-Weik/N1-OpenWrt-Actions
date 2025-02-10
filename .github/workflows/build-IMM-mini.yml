@@ -1,4 +1,4 @@
-name: OpenWRT-IMM-N1
+name: OpenWRT-IMM-N1-Mini
 
 on:
   workflow_dispatch:
