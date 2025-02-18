@@ -25,8 +25,8 @@ git clone --depth 1 https://github.com/ophub/luci-app-amlogic package/amlogic
 
 
 # iStore
-# git_sparse_clone main https://github.com/linkease/istore-ui app-store-ui
-# git_sparse_clone main https://github.com/linkease/istore luci
+git_sparse_clone main https://github.com/linkease/istore-ui app-store-ui
+git_sparse_clone main https://github.com/linkease/istore luci
 
 
 
