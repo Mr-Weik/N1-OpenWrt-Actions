@@ -55,3 +55,11 @@ rm -rf feeds/luci/applications/luci-app-argon-config
 
 # Default IP
 sed -i 's/192.168.1.1/192.168.0.188/g' package/base-files/files/bin/config_generate
+
+
+# 增加istoreui源
+echo >> feeds.conf.default
+echo 'src-git istore https://github.com/linkease/istore;main' >> feeds.conf.default
+echo >> feeds.conf.default
+echo 'src-git nas https://github.com/linkease/nas-packages.git;master' >> feeds.conf.default
+echo 'src-git nas_luci https://github.com/linkease/nas-packages-luci.git;main' >> feeds.conf.default
