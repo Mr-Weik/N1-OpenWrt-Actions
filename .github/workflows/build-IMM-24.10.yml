@@ -105,24 +105,12 @@ jobs:
         ccache: 'true'
         mixkey: N1-IMM-${{ env.REPO_BRANCH }}
         prefix: ${{ github.workspace }}/openwrt
-
-    - name: Add iStore feeds
-      run: |
-        echo 'src-git istore https://github.com/linkease/istore;main' >> openwrt/feeds.conf.default
-        echo 'src-git nas https://github.com/linkease/nas-packages.git;master' >> openwrt/feeds.conf.default
-        echo 'src-git nas_luci https://github.com/linkease/nas-packages-luci.git;main' >> openwrt/feeds.conf.default
-
     
     - name: Update & Install feeds
       working-directory: ./openwrt
       run: |
         ./scripts/feeds update -a
         ./scripts/feeds install -a
-
-    - name: Enable iStore packages
-      run: |
-        echo 'CONFIG_PACKAGE_luci-app-store=y' >> openwrt/.config
-        echo 'CONFIG_PACKAGE_luci-theme-argon=y' >> openwrt/.config
 
     - name: Load custom config
       run: |
