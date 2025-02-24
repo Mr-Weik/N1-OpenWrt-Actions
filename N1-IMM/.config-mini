@@ -64,14 +64,16 @@ CONFIG_PACKAGE_luci-app-filetransfer=n
 
 # iStore
 CONFIG_PACKAGE_luci-app-store=y
-
-CONFIG_PACKAGE_luci-app-ddnsto=y
-CONFIG_PACKAGE_luci-app-diskman=y
 CONFIG_PACKAGE_luci-app-istorex=y
 CONFIG_PACKAGE_luci-app-linkease=y
 CONFIG_PACKAGE_luci-app-quickstart=y
 CONFIG_PACKAGE_luci-app-unishare=y
 CONFIG_PACKAGE_luci-nginxer=y
+
+# 依赖项
+CONFIG_PACKAGE_luci-lib-ipkg=y
+CONFIG_PACKAGE_luci-lib-jsonc=y
+CONFIG_PACKAGE_luci-lib-nixio=y
 
 
 # other packages
