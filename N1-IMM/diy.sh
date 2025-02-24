@@ -1,4 +1,5 @@
 #!/bin/bash
+
 # Git稀疏克隆，只克隆指定目录到本地
 function git_sparse_clone() {
   branch="$1" repourl="$2" && shift 2
@@ -9,35 +10,24 @@ function git_sparse_clone() {
   cd .. && rm -rf $repodir
 }
 
+# 添加 feeds.conf.default 内容
+echo 'src-git istore https://github.com/linkease/istore;main' >> feeds.conf.default
+echo 'src-git nas https://github.com/linkease/nas-packages.git;master' >> feeds.conf.default
+echo 'src-git nas_luci https://github.com/linkease/nas-packages-luci.git;main' >> feeds.conf.default
 
-
-
-# Add packages
-#添加科学上网源
+# 添加科学上网源
 git clone --depth 1 https://github.com/jerrykuku/luci-theme-argon package/luci-theme-argon
 git clone --depth 1 https://github.com/jerrykuku/luci-app-argon-config package/luci-app-argon-config
 git clone --depth 1 https://github.com/ophub/luci-app-amlogic package/amlogic
-#git clone --depth 1 https://github.com/sirpdboy/luci-app-ddns-go package/ddnsgo
 git clone --depth 1 https://github.com/sbwml/luci-app-mosdns package/mosdns
-#git clone --depth 1 https://github.com/sbwml/luci-app-alist package/alist
-#git clone --depth 1 https://github.com/xiaorouji/openwrt-passwall
-
-
 
 # iStore
 git_sparse_clone main https://github.com/linkease/istore-ui app-store-ui
 git_sparse_clone main https://github.com/linkease/istore luci
 
-
-
-#删除库中的插件，使用自定义源中的包。
+# 删除库中的插件，使用自定义源中的包
 rm -rf feeds/luci/themes/luci-theme-argon
 rm -rf feeds/luci/applications/luci-app-argon-config
-#rm -rf feeds/luci/applications/luci-app-ddns-go
-#rm -rf feeds/packages/net/ddns-go
-#rm -rf feeds/packages/net/alist
-#rm -rf feeds/luci/applications/luci-app-alist
-#rm -rf feeds/luci/applications/openwrt-passwall
 
 # 替换luci-app-openvpn-server imm源的启动不了服务！
 #rm -rf feeds/luci/applications/luci-app-openvpn-server
@@ -47,19 +37,9 @@ rm -rf feeds/luci/applications/luci-app-argon-config
 #sed -i 's/services/vpn/g' package/luci-app-openvpn-server/luasrc/model/cbi/openvpn-server/*.lua
 #sed -i 's/services/vpn/g' package/luci-app-openvpn-server/luasrc/view/openvpn/*.htm
 
-
-#替换luci-app-socat为https://github.com/chenmozhijin/luci-app-socat
+# 替换luci-app-socat为https://github.com/chenmozhijin/luci-app-socat
 #rm -rf feeds/luci/applications/luci-app-socat
 #git_sparse_clone main https://github.com/chenmozhijin/luci-app-socat luci-app-socat
 
-
-# Default IP
+# 修改默认 IP
 sed -i 's/192.168.1.1/192.168.0.188/g' package/base-files/files/bin/config_generate
-
-
-# 增加istoreui源
-echo >> feeds.conf.default
-echo 'src-git istore https://github.com/linkease/istore;main' >> feeds.conf.default
-echo >> feeds.conf.default
-echo 'src-git nas https://github.com/linkease/nas-packages.git;master' >> feeds.conf.default
-echo 'src-git nas_luci https://github.com/linkease/nas-packages-luci.git;main' >> feeds.conf.default
